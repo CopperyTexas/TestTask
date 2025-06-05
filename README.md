@@ -1,59 +1,42 @@
-# TaskProject
+# Тестовое задание: Поиск библиотек Москвы на Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+## Описание проекта
 
-## Development server
+Данное приложение позволяет:
+1. Загрузить список библиотек Москвы из открытого API.
+2. Ввести наименование библиотеки и отфильтровать результаты.
+3. Вывести найденные библиотеки в виде таблицы:
+  - Номер по порядку
+  - Название (подсвечиваются все вхождения поискового слова)
+  - Адрес
+4. При клике на любую строку таблицы отображать карточку выбранной библиотеки в модальном окне.  
+   В карточке ключ–значение все поля, поступившие от API. Массивы и объекты сворачиваются/разворачиваются кнопкой “Развернуть/Свернуть” и выводятся через `JSON` пайп.
+---
+## Перед запуском необходимо вставить свой API ключ от сайта `data.mos.ru`
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/CopperyTexas/TestTask.git
+   cd TestTask
 
-## Code scaffolding
+2. Устанавливаем зависимости
+   ```bash
+   npm install
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. Настраиваем API-ключ  
+   Измените файл `src/environments/environment.example.ts` на `environment.ts` и в поле `myApiKey` вставьте значение вашего ключа:
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   ```ts
+   export const environment = {
+     production: false,
+     myApiKey: '<Используйте_ваш_API_KEY>',
+   };
+4. Запускаем в режиме разработки
+    ```bash
+    ng serve
+5. Проект будет доступен по адресу:
+    ```bash
+   http://localhost:4200
+![Скриншот](Screenshot.png)
