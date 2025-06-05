@@ -1,0 +1,22 @@
+<div class="library-card-wrapper" *ngIf="library">
+  <h2>Карточка библиотеки</h2>
+  <div *ngFor="let entry of entries" class="field-row">
+    <strong>{{ entry[0] }}:</strong>
+    <ng-container *ngIf="isPrimitive(entry[1]); else nonPrimitive">
+      {{ entry[1] }}
+    </ng-container>
+    <ng-template #nonPrimitive>
+      <div class="toggle-wrapper">
+        <button class="toggle-button" (click)="toggleExpand(entry[0])">
+          {{ isExpanded(entry[0]) ? 'Свернуть' : 'Развернуть' }}
+        </button>
+      </div>
+      <div
+        class="json-container"
+        *ngIf="isExpanded(entry[0])"
+      >
+        <pre>{{ entry[1] | json }}</pre>
+      </div>
+    </ng-template>
+  </div>
+</div>

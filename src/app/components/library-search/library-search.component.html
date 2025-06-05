@@ -1,0 +1,51 @@
+<div class="search-wrapper">
+  <img src="assets/milkyway.jpg" alt="Млечный путь" class="banner" />
+  <div class="search-controls">
+    <input
+      [(ngModel)]="searchItem"
+      placeholder="Введите слово для поиска..."
+      class="input"
+    />
+    <button (click)="onSearch()" class="button">Найти библиотеки</button>
+  </div>
+  <div class="result-container" *ngIf="filteredLibraries.length > 0">
+    <table class="result-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Название</th>
+          <th>Адрес</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let lib of filteredLibraries; let i = index"
+          (click)="selectLibrary(lib)"
+          class="result-row"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>
+            <ng-container
+              *ngFor="let part of splitText(lib.Cells.FullName, searchItem)"
+            >
+              <span *ngIf="part.highlight" class="highlight">{{
+                part.text
+              }}</span>
+              <span *ngIf="!part.highlight">{{ part.text }}</span>
+            </ng-container>
+          </td>
+          <td>{{ lib.Cells.ObjectAddress?.[0]?.Address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="modal-overlay"
+    *ngIf="selectedLibrary"
+    (click)="selectLibrary(null)"
+  >
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <app-library-card [library]="selectedLibrary"></app-library-card>
+    </div>
+  </div>
+</div>

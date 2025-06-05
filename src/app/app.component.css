@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: antiquewhite;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.main-text {
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  flex: 0 0 auto;
+}
